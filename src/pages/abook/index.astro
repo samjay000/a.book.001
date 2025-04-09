@@ -1,0 +1,11 @@
+---
+import CollectionLayout from "@components/abook/CollectionLayout.astro";
+import { getIndex, getGroups } from "@lib/contentParser";
+import type { ABookEntry } from "@/types";
+import { sortByTitle } from "@lib/sortFunctions";
+
+const collectionIndex = (await getIndex("abook")) as ABookEntry;
+const groupIndices = (await getGroups("abook", sortByTitle)) as ABookEntry[];
+---
+
+<CollectionLayout entries={groupIndices} collectionIndex={collectionIndex} />
